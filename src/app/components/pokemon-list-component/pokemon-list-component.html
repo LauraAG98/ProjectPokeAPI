@@ -1,0 +1,35 @@
+<!-- Subtítulo de la sección -->
+<h2 class="pl-20 py-8 font-pixel pt-20">Evolución:</h2>
+
+<!-- Contenedor principal de la sección de los pokemones -->
+<div class="flex flex-col gap-10 p-8">
+    <!-- For que recorre cada cadena evolutiva -->
+    @for(group of pokemonList; track $index){
+    
+    <!-- Estilos asignados a la información de los pokemones -->
+    <!-- For que recorre cada pokemon individualmente -->
+    <div class="flex flex-wrap items-center justify-center gap-4">
+        @for (pokemon of group.chainPokemon; track $index) {
+        <div
+            class="group bg-[oklch(0.99_0_0)] border-4 border-black w-56 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
+
+            <div class="flex justify-center items-center px-3 py-1 border-b-4 border-black bg-[oklch(0.85_0.19_95)]">
+                <h1 class="font-bold text-xl">{{pokemon.detail.name}}</h1>
+            </div>
+
+            <div class="flex justify-center items-center bg-[oklch(0.94_0.02_250)] py-4 border-b-4 border-black">
+                <img class="w-24 h-24 image-rendering-pixelated group-hover:scale-110 transition-transform"
+                    [src]="pokemon.detail.sprites.front_default" alt="">
+            </div>
+
+            <div class="px-3 py-3 text-center">
+                <p><span class="font-bold">ID: </span>{{pokemon.detail.id}}</p>
+                <p><span class="font-bold">Altura: </span>{{pokemon.detail.height}}</p>
+                <p><span class="font-bold">Peso: </span>{{pokemon.detail.weight}}</p>
+            </div>
+
+        </div>
+        }
+    </div>
+    }
+</div>

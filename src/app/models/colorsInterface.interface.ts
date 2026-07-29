@@ -1,5 +1,5 @@
 import { NamedAPIResourceInterface } from "./namedAPIResouce.interface";
-import { NameInterface } from "./NameInterface.interface";
+import { NameInterface } from "./nameInterface.interface";
 
 
 //Estructura de datos que clasifica los pokemones por su color
