@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Header } from '../header/header';
-import { SelectorComponent } from '../selector-component/selector-component';
 import { PokemonListComponent } from '../pokemon-list-component/pokemon-list-component';
 
 @Component({
   selector: 'app-home-component',
-  imports: [Header, SelectorComponent, PokemonListComponent],
+  imports: [Header, PokemonListComponent],
   templateUrl: './home-component.html',
   styleUrl: './home-component.css',
 })
