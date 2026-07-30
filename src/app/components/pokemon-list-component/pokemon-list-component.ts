@@ -37,6 +37,7 @@ export class PokemonListComponent {
     this.habitat = '';
   }
 
+  //Filtra información dependiendo de la opción seleccionada
   getFilter() {
     if (this.color !== '') {
       return this.pokemonList.filter(group => {

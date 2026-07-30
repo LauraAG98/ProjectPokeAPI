@@ -2,9 +2,10 @@
 <h2 class="pl-20 py-8 font-pixel">Clasificar:</h2>
 <div class="flex justify-around">
     <!-- Se agrega ngModel para guardar y modificar el valor de la variable -->
-    <select [(ngModel)]="color" [disabled]="habitat !== ''" class="w-[20%] bg-white border-2 text-gray-800 text-center border-b-4 border-gray-700 px-3 py-2 font-bold focus:outline-none" name="Colores" id="">
+    <select [(ngModel)]="color" [disabled]="habitat !== ''" class="w-[20%] bg-white border-2 text-gray-800 text-center border-b-4 border-gray-700 px-3 py-2 font-bold focus:outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:opacity-60"  name="Colores" id="">
         <option class="" value="" disabled selected hidden> -- Pokemones por color --</option>
 
+       <!-- Opciones del selector -->
         <option value="black">Negro</option>
         <option value="blue">Azul</option>
         <option value="brown">Café</option>
@@ -18,7 +19,7 @@
 
     </select>
 
-    <select [(ngModel)]="habitat" [disabled]="color !==''" class="w-[20%] bg-white border-2 text-gray-800 text-center border-b-4 border-gray-700 px-3 py-2 font-bold focus:outline-none" name="Hábitat" id="">
+    <select [(ngModel)]="habitat" [disabled]="color !==''" class="w-[20%] bg-white border-2 text-gray-800 text-center border-b-4 border-gray-700 px-3 py-2 font-bold focus:outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:opacity-60" name="Hábitat" id="">
         <option value="" disabled selected hidden> -- Pokemones por hábitat --</option>
 
         <option value="cave">Cueva</option>
@@ -34,10 +35,9 @@
     </select>
 </div>
 
+<!-- Botón -->
 <div class="flex justify-center gap-10 pt-14">
-    <button (click)="getFilter()" class="w-[15%] font-pixel text-xs bg-indigo-500 p-2 rounded-xl cursor-pointer hover:bg-indigo-700 hover:text-white duration-300 transition-all  disabled:border-gray-700 disabled:hover:font-norma">Buscar</button>
-
-    <button (click)="cleanSelector()" class="w-[15%] font-pixel text-xs border-2 border-indigo-500 p-2 rounded-xl cursor-pointer hover:bg-indigo-500 duration-300 transition-all  disabled:border-gray-700 disabled:hover:font-norma">Volver a elegir</button>
+    <button (click)="cleanSelector()" class="w-[15%] font-pixel text-xs border-2 border-indigo-500 p-2 rounded-xl cursor-pointer hover:bg-indigo-500 duration-300 transition-all">Volver a elegir</button>
 </div>
 
 <!-- Subtítulo de la sección -->
@@ -46,7 +46,7 @@
 <!-- Contenedor principal de la sección de los pokemones -->
 <div class="flex flex-col gap-10 p-8">
     <!-- For que recorre cada cadena evolutiva -->
-    @for(group of pokemonList; track $index){
+    @for(group of getFilter(); track $index){
     
     <!-- Estilos asignados a la información de los pokemones -->
     <!-- For que recorre cada pokemon individualmente -->
@@ -66,8 +66,8 @@
 
             <div class="px-3 py-3 text-center">
                 <p><span class="font-bold">ID: </span>{{pokemon.detail.id}}</p>
-                <p><span class="font-bold">Altura: </span>{{pokemon.detail.height}}</p>
-                <p><span class="font-bold">Peso: </span>{{pokemon.detail.weight}}</p>
+                <p><span class="font-bold">Altura: </span>{{pokemon.detail.height / 10}} m.</p>
+                <p><span class="font-bold">Peso: </span>{{pokemon.detail.weight / 10}} kg</p>
             </div>
 
         </div>
