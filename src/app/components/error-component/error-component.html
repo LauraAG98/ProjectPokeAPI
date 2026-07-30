@@ -1,0 +1,11 @@
+<!-- Condición que determina si se muestra mensaje de error al usuario -->
+@if(error.errorMessage() !== ''){
+<div class="fixed inset-0 bg-black/70 flex items-center justify-center backdrop-blur-xl">
+    <div class="flex flex-col justify-center items-center bg-white border-b-black p-16 gap-10">
+        <p class="font-pixel text-xl">Error</p>
+        <p class="text-black text-lg">{{error.errorMessage()}}</p>
+        <button class="w-[40%] font-pixel text-xs border-2 bg-indigo-500 p-2 rounded-xl cursor-pointer"
+            (click)='error.clearError()'>Cerrar</button>
+    </div>
+</div>
+}

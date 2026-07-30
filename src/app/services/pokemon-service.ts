@@ -27,7 +27,7 @@ export class PokemonService {
 
   //Petición que obtiene la especie de cada pokemon (habitat, color...)
   getPokemonSpecies(idOrName: string | number) {
-    return this.http.get<SpeciesInterface>(`${environment.apiUrl}/pokemon-species/${idOrName}/`)
+    return this.http.get<SpeciesInterface>(`${environment.apiUrl}/pokemon-species-type/${idOrName}/`)
   };
 
   //Se obtiene la cadena evolutiva de cada pokemon
