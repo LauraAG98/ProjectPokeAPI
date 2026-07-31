@@ -22,6 +22,7 @@ export class PokemonListComponent {
 
   //Método que obtiene la evolución de los personajes
   loadPokemon() {
+    console.log('se esta ejecutando');
     this.pokemonSer.listPokemon().subscribe((res) => {
       this.pokemonList = res;
     })
@@ -29,6 +30,7 @@ export class PokemonListComponent {
 
   ngOnInit() {
     this.loadPokemon();
+    console.log('se esta ejecutando');
   }
 
   //Reinicia el selector
@@ -41,11 +43,11 @@ export class PokemonListComponent {
   getFilter() {
     if (this.color !== '') {
       return this.pokemonList.filter(group => {
-        return group.chainPokemon.some(p => p.evolution.color.name === this.color)
+        return group.chainPokemons.some(p => p.evolution.color.name === this.color)
       })
     } else if (this.habitat !== '') {
       return this.pokemonList.filter(group => {
-        return group.chainPokemon.some(p => p.evolution.habitat?.name === this.habitat)
+        return group.chainPokemons.some(p => p.evolution.habitat?.name === this.habitat)
       })
     } else {
       return this.pokemonList;

@@ -2,5 +2,5 @@ import { EvolutionAndDetailInterface } from "./evolutionAndDetailInterface.inter
 
 //Se obtiene la cadena evolutiva de cada pokemon
 export interface GroupEvolutionInterface {
-    chainPokemon: EvolutionAndDetailInterface[]
+    chainPokemons: EvolutionAndDetailInterface[]
 }
