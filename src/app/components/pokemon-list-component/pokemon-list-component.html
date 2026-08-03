@@ -1,11 +1,13 @@
 <!-- Título  de la sección y estilos de selectores -->
-<h2 class="pl-20 py-8 font-pixel">Clasificar:</h2>
-<div class="flex justify-around">
+<h2 class="w-full text-center py-4 font-pixel">Clasificar:</h2>
+<div class="flex justify-center gap-18 py-3">
     <!-- Se agrega ngModel para guardar y modificar el valor de la variable -->
-    <select [(ngModel)]="color" [disabled]="habitat !== ''" class="w-[20%] bg-white border-2 text-gray-800 text-center border-b-4 border-gray-700 px-3 py-2 font-bold focus:outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:opacity-60"  name="Colores" id="">
+    <select [(ngModel)]="color" [disabled]="habitat !== ''"
+        class="w-[20%] bg-white border-2 text-gray-800 text-center border-b-4 border-gray-700 px-3 py-2 font-bold focus:outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:opacity-60"
+        name="Colores" id="">
         <option class="" value="" disabled selected hidden> -- Pokemones por color --</option>
 
-       <!-- Opciones del selector -->
+        <!-- Opciones del selector -->
         <option value="black">Negro</option>
         <option value="blue">Azul</option>
         <option value="brown">Café</option>
@@ -19,7 +21,9 @@
 
     </select>
 
-    <select [(ngModel)]="habitat" [disabled]="color !==''" class="w-[20%] bg-white border-2 text-gray-800 text-center border-b-4 border-gray-700 px-3 py-2 font-bold focus:outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:opacity-60" name="Hábitat" id="">
+    <select [(ngModel)]="habitat" [disabled]="color !==''"
+        class="w-[20%] bg-white border-2 text-gray-800 text-center border-b-4 border-gray-700 px-3 py-2 font-bold focus:outline-none disabled:bg-gray-200 disabled:text-gray-400 disabled:opacity-60"
+        name="Hábitat" id="">
         <option value="" disabled selected hidden> -- Pokemones por hábitat --</option>
 
         <option value="cave">Cueva</option>
@@ -36,42 +40,66 @@
 </div>
 
 <!-- Botón -->
-<div class="flex justify-center gap-10 pt-8">
-    <button (click)="cleanSelector()" class="w-[15%] font-pixel text-xs border-2 border-indigo-500 p-2 rounded-xl cursor-pointer hover:bg-indigo-500 duration-300 transition-all">Volver a elegir</button>
+<div class="flex justify-center pt-8">
+    <button (click)="cleanSelector()"
+        class="w-[15%] font-pixel text-xs border-2 bg-linear-to-r from-yellow-400 to-red-500 border-black p-2 rounded-xl cursor-pointer hover:from-yellow-300 hover:to bg-red-300 duration-200 transition-all">Volver
+        a elegir</button>
 </div>
 
 <!-- Subtítulo de la sección -->
-<h2 class="pl-20 py-8 font-pixel pt-20">Evolución:</h2>
+<h2 class="w-full text-center font-pixel pt-20">Evolución:</h2>
 
 <!-- Contenedor principal de la sección de los pokemones -->
-<div class="flex flex-col gap-10 p-8">
+<div class="flex flex-wrap justify-center gap-10 pt-4 pb-10">
     <!-- For que recorre cada cadena evolutiva -->
-    @for(group of getFilter(); track $index){
-    
+    @for(group of getFilter(); track $index; let lastGroup = $last) {
+
     <!-- Estilos asignados a la información de los pokemones -->
     <!-- For que recorre cada pokemon individualmente -->
-    <div class="flex flex-wrap items-center justify-center gap-4">
-        @for (pokemon of group.chainPokemons; track $index) {
+    <div class="flex flex-row items-center justify-evenly w-full max-w-6xl mx-auto px-4 gap-2">
+        @for (pokemon of group.chainPokemons; track $index; let last = $last) {
         <div
-            class="group bg-[oklch(0.99_0_0)] border-4 border-black w-56 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.75 hover:translate-y-0.75 transition-all">
+            class="flex-1 flex group bg-[oklch(0.99_0_0)] border-4 border-black hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.75 transition-all">
 
-            <div class="flex justify-center items-center px-3 py-1 border-b-4 border-black bg-[oklch(0.85_0.19_95)]">
-                <h1 class="font-bold text-xl">{{pokemon.detail.name}}</h1>
+            <div class="flex flex-col border-r-4 border-black w-1/2">
+                <div class="flex flex-col justify-center items-center px-3 py-1 border-b-4 border-black bg-yellow-300">
+                    <h1 class="font-bold text-xl">{{pokemon.detail.name}}</h1>
+                </div>
+
+                <div class="flex justify-center items-center bg-yellow-100 py-10 border-b-4 border-black">
+                    <img class="w-24 h-24 image-rendering-pixelated group-hover:scale-110 transition-transform"
+                        [src]="pokemon.detail.sprites.front_default" alt="">
+                </div>
             </div>
 
-            <div class="flex justify-center items-center bg-[oklch(0.94_0.02_250)] py-4 border-b-4 border-black">
-                <img class="w-24 h-24 image-rendering-pixelated group-hover:scale-110 transition-transform"
-                    [src]="pokemon.detail.sprites.front_default" alt="">
-            </div>
-
-            <div class="px-3 py-3 text-center">
+            <div class="flex flex-col justify-center px-3 py-3">
                 <p><span class="font-bold">ID: </span>{{pokemon.detail.id}}</p>
                 <p><span class="font-bold">Altura: </span>{{pokemon.detail.height / 10}} m.</p>
                 <p><span class="font-bold">Peso: </span>{{pokemon.detail.weight / 10}} kg</p>
+
+                <div class="flex justify-center items-center w-40 pt-10 gap-2 cursor-pointer">
+                    <img class="w-8 h-8 " src="images/pokebola.png" alt="">
+                    <button
+                        class="bg-transparent text-black rounded hover:text-blue-800 hover:font-bold transition-colors">
+                        Ver detalles
+                    </button>
+                </div>
+
             </div>
 
         </div>
+
+        @if (!last) {
+        <div class="shrink-0 flex justify-center items-center text-3xl font-bold">
+            <img src="" alt="">→
+        </div>
+        }
+
         }
     </div>
+
+    @if (!lastGroup) {
+    <hr class="border-2 border-bs-gray-300 w-[80%] my-4">
+    }
     }
 </div>
