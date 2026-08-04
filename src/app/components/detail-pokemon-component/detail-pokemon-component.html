@@ -1,0 +1,30 @@
+<div class="fixed inset-0 bg-black/70 flex items-center justify-center backdrop-blur-xl">
+    <div class="flex flex-col items-center bg-white border-b-black p-6 gap-2 w-[30%] h-[80%]">
+
+        @if(pokemonModal) {
+        <p class="font-pixel text-xl">{{pokemonModal.detail.name}}</p>
+        <p class="font-pixel text-[13px]">ID: {{pokemonModal.detail.id}}</p>
+
+        <div class="flex justify-center items-center gap-10 border-2 border-black p-4">
+            <img class="w-40 h-40 image-rendering-pixelated" [src]="pokemonModal.detail.sprites.front_default" alt="">
+            <img class="w-40 h-40 image-rendering-pixelated" [src]="pokemonModal.detail.sprites.back_default" alt="">
+        </div>
+
+        <div>
+            
+        </div>
+        <p class="font-pixel text-xs mt-2">Habilidades:</p>
+        <div class="flex flex-col justify-center items-center gap-2">
+            @for (ability of pokemonModal.detail.abilities; track $index) {
+            <p class="text-xl">{{ability.ability.name}}</p>
+            }
+        </div>
+
+        <p class="text-xl pt-4"><span class="font-pixel text-xs">Color: </span>{{pokemonModal.evolution.color.name}}</p>
+        <p class="text-xl pt-4"><span class="font-pixel text-xs">Hábitat: </span>{{pokemonModal.evolution.habitat.name}}</p>
+        }
+        
+        <button (click)="closeModal()"
+            class="w-[30%] font-pixel text-[10px] border-2 bg-cyan-200 p-1 rounded-sm cursor-pointer hover:bg-cyan-300 mt-6">Cerrar</button>
+    </div>
+</div>

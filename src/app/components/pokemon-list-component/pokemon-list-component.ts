@@ -2,16 +2,22 @@ import { Component } from '@angular/core';
 import { PokemonService } from '../../services/pokemon-service';
 import { GroupEvolutionInterface } from '../../models/groupEvolutionInterface';
 import { FormsModule } from '@angular/forms';
+import { DetailPokemonComponent } from '../detail-pokemon-component/detail-pokemon-component';
+import { EvolutionAndDetailInterface } from '../../models/evolutionAndDetailInterface.interface';
 
 @Component({
   selector: 'app-pokemon-list-component',
-  imports: [FormsModule],
+  imports: [FormsModule, DetailPokemonComponent],
   templateUrl: './pokemon-list-component.html',
   styleUrl: './pokemon-list-component.css',
 })
 export class PokemonListComponent {
   //Variable que contiene los pokemones
   pokemonList: GroupEvolutionInterface[] = [];
+  pokemonDetailModal: EvolutionAndDetailInterface | null = null;
+
+  //Variable que define si se muestra o no el modal con los detalles del pokemon elegido
+  showModal: boolean = false;
 
   //Variables que se modifican segun la selección del usuario
   color: string = '';
@@ -22,7 +28,6 @@ export class PokemonListComponent {
 
   //Método que obtiene la evolución de los personajes
   loadPokemon() {
-    console.log('se esta ejecutando');
     this.pokemonSer.listPokemon().subscribe((res) => {
       this.pokemonList = res;
     })
@@ -30,7 +35,6 @@ export class PokemonListComponent {
 
   ngOnInit() {
     this.loadPokemon();
-    console.log('se esta ejecutando');
   }
 
   //Reinicia el selector
@@ -52,5 +56,17 @@ export class PokemonListComponent {
     } else {
       return this.pokemonList;
     }
+  }
+
+  //Modal que muestra el detalle del pokemon seleccionado
+  detailPokemonModal(pokemon: EvolutionAndDetailInterface) {
+    console.log('pokemon seleccionado', pokemon);
+    this.pokemonDetailModal = pokemon;
+    this.showModal = true;
+  }
+
+  //Método que cierra el modal
+  closeModal(){
+    this.showModal = false;
   }
 }
